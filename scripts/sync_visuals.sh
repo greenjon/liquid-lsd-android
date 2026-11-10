@@ -6,4 +6,5 @@ set -euo pipefail
 here="$(cd "$(dirname "$0")/.." && pwd)"
 src="${1:-${LIQUID_LSD:-$here/../../projects/liquid-lsd}}"
 [ -x "$src/scripts/sync_lsd_visuals.sh" ] || { echo "no scripts/sync_lsd_visuals.sh under $src (pass the liquid-lsd path)" >&2; exit 1; }
-exec "$src/scripts/sync_lsd_visuals.sh" "$here"
+# No Spaz Radio photo gallery here: a general VJ app (and 9 MB smaller); the engine then skips that background.
+exec "$src/scripts/sync_lsd_visuals.sh" "$here" --no-gallery

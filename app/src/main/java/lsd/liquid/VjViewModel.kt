@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import lsd.liquid.audio.AudioSource
 import lsd.liquid.visuals.ContentUpdates
 import lsd.liquid.visuals.LsdCatalog
 import lsd.liquid.visuals.LsdControl
@@ -44,6 +45,34 @@ class VjViewModel(app: Application) : AndroidViewModel(app) {
 
     private var restored = false
 
+    /** The input the user last chose; null before the first launch has asked. The mic comes back by itself. */
+    var input: AudioSource?
+        get() = prefs.getString("input", null)?.let { n -> AudioSource.entries.firstOrNull { it.name == n } }
+        set(v) { prefs.edit().putString("input", v?.name).apply() }
+
+    private val _hint = MutableStateFlow<String?>(null)
+    /** A one-line notice over the picture (first-run help, an input that fell back), shown for a few seconds. */
+    val hint: StateFlow<String?> = _hint.asStateFlow()
+    private val main = android.os.Handler(android.os.Looper.getMainLooper())
+    private val clearHint = Runnable { _hint.value = null }
+
+    fun showHint(text: String, ms: Long = 6000) {
+        _hint.value = text
+        main.removeCallbacks(clearHint)
+        main.postDelayed(clearHint, ms)
+    }
+
+    /**
+     * Ignores the live broadcast on now: following live goes off for this session only (the saved setting
+     * stays on, so the next launch follows again). Turning the switch back on ends it.
+     */
+    private var liveIgnored = false
+    fun ignoreLive() {
+        liveIgnored = true
+        _settings.value = _settings.value.copy(live = false)
+        showHint("Ignoring live broadcasts until the app restarts (AUDIO tab to follow again)")
+    }
+
     /** A page came up (start, renderer restart, or the picture moved display): its controls start at the defaults. */
     fun onPageReady() { restored = false }
 
@@ -79,13 +108,14 @@ class VjViewModel(app: Application) : AndroidViewModel(app) {
 
     fun update(s: VisualsSettings) {
         val old = _settings.value
+        if (liveIgnored && s.live) liveIgnored = false
         _settings.value = s
         if (s.contentUpdates != old.contentUpdates) ContentUpdates.schedule(getApplication(), s.contentUpdates)
         prefs.edit()
             .putString("quality", s.quality.name)
             .putFloat("reactivity", s.reactivity)
             .putString("reduced_motion", s.reducedMotion.name)
-            .putBoolean("live", s.live)
+            .putBoolean("live", if (liveIgnored) prefs.getBoolean("live", true) else s.live)
             .putInt("sync_ms", s.syncMs)
             .putBoolean("content_updates", s.contentUpdates)
             .apply()
@@ -119,7 +149,12 @@ class VjViewModel(app: Application) : AndroidViewModel(app) {
     }
 
     private fun restoreControls() {
-        if (!prefs.contains("hold_bars")) return // first run: the page's defaults
+        if (!prefs.contains("hold_bars")) {
+            // First run: the page's defaults, except that backgrounds change with the scenes (the web TV holds its
+            // photo gallery, which this app doesn't carry).
+            control.backgroundMode("scenes")
+            return
+        }
         control.time(prefs.getInt("hold_bars", 16))
         control.autoRoll(prefs.getInt("auto_roll_bars", 0))
         control.follow(prefs.getBoolean("follow", true))

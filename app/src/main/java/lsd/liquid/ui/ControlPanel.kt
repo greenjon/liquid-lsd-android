@@ -231,7 +231,7 @@ private fun BackgroundTab(vm: VjViewModel, state: LsdState, catalog: LsdCatalog?
             IconButton(onClick = c::nextBackground, enabled = state.bgMode != "off") { Icon(Icons.Filled.SkipNext, "Next background") }
         }
         LazyColumn(Modifier.fillMaxWidth()) {
-            items(catalog?.backgrounds.orEmpty(), key = { it.index }) { b ->
+            items(catalog?.backgrounds.orEmpty().filter { it.runnable }, key = { it.index }) { b ->
                 ChoiceRow(displayName(b.name), on = state.background == b.name, locked = null, enabled = state.bgMode != "off",
                     onClick = { c.background(b.index) }, onLock = {})
             }

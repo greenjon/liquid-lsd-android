@@ -16,6 +16,7 @@ import lsd.liquid.visuals.VisualsSettings
 private const val TAG = "ExternalOutput"
 private const val PREVIEW_WIDTH = 480
 private const val PREVIEW_EVERY_MS = 500L
+private const val MAX_EXTERNAL_PIXELS = 1920 * 1080
 
 /** A second display the picture can go to. */
 data class OutputDisplay(val id: Int, val name: String, val width: Int, val height: Int, val refreshHz: Float)
@@ -70,7 +71,19 @@ class ExternalOutput(private val activity: Activity, private val vm: VjViewModel
         }
     }
 
-    fun applySettings(s: VisualsSettings) { presentation?.player?.settings = s }
+    fun applySettings(s: VisualsSettings) {
+        val p = presentation ?: return
+        p.player.settings = withBudget(s, p.display)
+    }
+
+    /**
+     * The display's own resolution, up to 1080p's worth of pixels: the phone's GPU draws only this picture while
+     * presenting, so it can afford more than the 720p phone default (the engine still steps down if it can't).
+     */
+    private fun withBudget(s: VisualsSettings, d: Display): VisualsSettings {
+        val m = d.mode
+        return s.copy(maxPixels = minOf(m.physicalWidth * m.physicalHeight, MAX_EXTERNAL_PIXELS))
+    }
 
     private fun show(d: Display) {
         Log.d(TAG, "picture to display ${d.displayId} ${d.name}")
@@ -86,7 +99,7 @@ class ExternalOutput(private val activity: Activity, private val vm: VjViewModel
             Log.w(TAG, "could not show on display ${d.displayId}", e)
             return
         }
-        p.player.settings = vm.settings.value
+        p.player.settings = withBudget(vm.settings.value, d)
         p.player.active = true
         presentation = p
         _presenting.value = true

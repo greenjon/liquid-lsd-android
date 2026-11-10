@@ -3,10 +3,8 @@ package lsd.liquid
 import android.Manifest
 import android.content.pm.PackageManager
 import android.media.projection.MediaProjectionManager
-import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,17 +27,19 @@ class MainActivity : ComponentActivity() {
     private val askAudio = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         val source = pendingSource
         pendingSource = null
-        if (!granted) { toast("Liquid LSD needs the microphone permission to hear anything"); return@registerForActivityResult }
+        if (!granted) {
+            vm.input = AudioSource.OFF
+            vm.showHint("No microphone: the picture keeps its own beat. AUDIO tab to listen.", 8000)
+            return@registerForActivityResult
+        }
         source?.let { startSource(it) }
     }
 
     private val askCapture = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { r ->
         val data = r.data
         if (r.resultCode == RESULT_OK && data != null) AudioService.startSystem(this, r.resultCode, data)
-        else toast("Capture not allowed: the picture keeps its current input")
+        else vm.showHint("Phone audio not allowed: the picture keeps its current input")
     }
-
-    private val askNotifications = registerForActivityResult(ActivityResultContracts.RequestPermission()) { }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +54,34 @@ class MainActivity : ComponentActivity() {
         output.start()
         lifecycleScope.launch { vm.settings.collect { output.applySettings(it) } }
         lifecycleScope.launch { vm.output.collect { output.update() } }
-        setContent { VjScreen(vm, output, onSource = ::chooseSource) }
+        setContent { VjScreen(vm, output, onSource = { chooseSource(it) }) }
+    }
+
+    private var inputStarted = false
+
+    override fun onStart() {
+        super.onStart()
+        // Once per launch, after the activity is on screen (a microphone service may only start from the foreground).
+        if (!inputStarted) { inputStarted = true; startRememberedInput() }
+    }
+
+    /** First launch: ask for the microphone and listen. Later: the last input, the microphone coming back by itself. */
+    private fun startRememberedInput() {
+        if (AudioService.status.value.source != AudioSource.OFF) return // still running from before
+        val micAllowed = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+        when (vm.input) {
+            null -> {
+                vm.input = AudioSource.MICROPHONE
+                if (!micAllowed) vm.showHint("Allow the microphone so the picture can hear the music. Sound never leaves the phone.", 10000)
+                chooseSource(AudioSource.MICROPHONE, remember = false)
+            }
+            AudioSource.MICROPHONE -> if (micAllowed) AudioService.startMicrophone(this)
+            AudioSource.SYSTEM -> if (micAllowed) {
+                AudioService.startMicrophone(this)
+                vm.showHint("Phone audio needs your OK each time: listening to the microphone (AUDIO tab to switch)", 8000)
+            }
+            AudioSource.OFF -> {}
+        }
     }
 
     override fun onDestroy() {
@@ -63,11 +90,13 @@ class MainActivity : ComponentActivity() {
     }
 
     /** Switches the audio input, asking for whatever permission it needs first. */
-    private fun chooseSource(source: AudioSource) {
+    private fun chooseSource(source: AudioSource) = chooseSource(source, remember = true)
+
+    private fun chooseSource(source: AudioSource, remember: Boolean) {
+        if (remember) vm.input = source
         if (source == AudioSource.OFF) { AudioService.stop(this); return }
-        if (Build.VERSION.SDK_INT >= 33 && ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
-            askNotifications.launch(Manifest.permission.POST_NOTIFICATIONS) // the input's notification; it runs without it
-        }
+        // No notification permission prompt: the input's notification is a nicety (Android shows its own microphone
+        // indicator), and one prompt on first launch is the most "no setup" can afford. Settings can enable it.
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             pendingSource = source
             askAudio.launch(Manifest.permission.RECORD_AUDIO)
@@ -83,6 +112,4 @@ class MainActivity : ComponentActivity() {
             AudioSource.OFF -> AudioService.stop(this)
         }
     }
-
-    private fun toast(text: String) = Toast.makeText(this, text, Toast.LENGTH_LONG).show()
 }
