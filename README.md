@@ -28,8 +28,8 @@ App ID `lsd.liquid`, Kotlin + Jetpack Compose, Android 10 (API 29) and later.
 ## External display
 
 Plug in a USB-C/HDMI display (phones with DisplayPort over USB-C), or connect a wireless display: the picture
-moves there (`ExternalOutput`, `LsdPresentation`) and keeps running with the phone screen off or another app in
-front; the phone shows the controls over a small preview. Unplugging brings it back. Turn it off in the Audio tab.
+moves there (`ExternalOutput`, `LsdPresentation`) and keeps running with another app in
+front (screen-off not yet checked); the phone shows the controls over a small preview. Unplugging brings it back. Turn it off in the Audio tab.
 Without hardware: `adb shell settings put global overlay_display_devices 1920x1080/320` (and `'""'` to remove).
 
 ## Build
