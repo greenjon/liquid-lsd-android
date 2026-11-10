@@ -3,6 +3,7 @@ package lsd.liquid.ui
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -26,8 +27,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import lsd.liquid.ExternalOutput
 import lsd.liquid.VjViewModel
 import lsd.liquid.audio.AudioService
 import lsd.liquid.audio.AudioSource
@@ -38,7 +42,7 @@ private val scheme = darkColorScheme(primary = Lime, onPrimary = Color.Black, se
 
 /** The picture full screen; a tap anywhere shows or hides the controls over it. */
 @Composable
-fun VjScreen(vm: VjViewModel, onSource: (AudioSource) -> Unit) {
+fun VjScreen(vm: VjViewModel, output: ExternalOutput, onSource: (AudioSource) -> Unit) {
     val settings by vm.settings.collectAsState()
     val state by vm.state.collectAsState()
     val catalog by vm.catalog.collectAsState()
@@ -46,6 +50,9 @@ fun VjScreen(vm: VjViewModel, onSource: (AudioSource) -> Unit) {
     val audio by AudioService.status.collectAsState()
     val level by AudioService.level.collectAsState()
     var controls by rememberSaveable { mutableStateOf(true) }
+    val presenting by output.presenting.collectAsState()
+    val preview by output.preview.collectAsState()
+    val display by output.display.collectAsState()
 
     MaterialTheme(colorScheme = scheme) {
         Box(Modifier.fillMaxSize().background(Color.Black)) {
@@ -54,10 +61,19 @@ fun VjScreen(vm: VjViewModel, onSource: (AudioSource) -> Unit) {
                     "The visuals can't run on this device: they need a WebView with WebGL 2.",
                     Modifier.align(Alignment.Center).padding(32.dp), color = Color.White, textAlign = TextAlign.Center,
                 )
+            } else if (presenting) {
+                // The picture is on the second display; here, a preview of it.
+                preview?.let {
+                    Image(it.asImageBitmap(), "Preview of the external display", Modifier.fillMaxSize(), contentScale = ContentScale.Fit)
+                }
+                Text(
+                    "ON ${display?.name ?: "EXTERNAL DISPLAY"}".uppercase() + (display?.let { "  ${it.width}x${it.height}" } ?: ""),
+                    Modifier.align(Alignment.Center).background(Color(0x99000000)).padding(8.dp), color = Lime,
+                )
             } else {
                 LsdVisuals(
                     settings = settings, active = true, onFailed = vm::onFailed, modifier = Modifier.fillMaxSize(),
-                    control = vm.control, onState = vm::onState,
+                    control = vm.control, onState = vm::onState, onReady = vm::onPageReady,
                 )
             }
             Box(
@@ -69,7 +85,7 @@ fun VjScreen(vm: VjViewModel, onSource: (AudioSource) -> Unit) {
                 Column(Modifier.fillMaxSize().safeDrawingPadding()) {
                     StatusBar(state, audio, level, Modifier.fillMaxWidth())
                     Spacer(Modifier.weight(1f))
-                    ControlPanel(vm, state, catalog, settings, audio, level, onSource, Modifier.fillMaxWidth())
+                    ControlPanel(vm, state, catalog, settings, audio, level, onSource, display, Modifier.fillMaxWidth())
                 }
             }
         }

@@ -41,6 +41,7 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -54,6 +55,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import lsd.liquid.OutputDisplay
 import lsd.liquid.VjViewModel
 import lsd.liquid.audio.AudioSource
 import lsd.liquid.audio.AudioStatus
@@ -113,7 +115,7 @@ fun StatusBar(state: LsdState, audio: AudioStatus, level: Float, modifier: Modif
 @Composable
 fun ControlPanel(
     vm: VjViewModel, state: LsdState, catalog: LsdCatalog?, settings: VisualsSettings, audio: AudioStatus, level: Float,
-    onSource: (AudioSource) -> Unit, modifier: Modifier = Modifier,
+    onSource: (AudioSource) -> Unit, display: OutputDisplay?, modifier: Modifier = Modifier,
 ) {
     var tab by rememberSaveable { mutableIntStateOf(0) }
     val height = (LocalConfiguration.current.screenHeightDp * 0.48f).dp
@@ -133,7 +135,7 @@ fun ControlPanel(
                     0 -> ScenesTab(vm, state, catalog)
                     1 -> EffectsTab(vm, state, catalog)
                     2 -> BackgroundTab(vm, state, catalog)
-                    else -> AudioTab(vm, settings, audio, level, onSource)
+                    else -> AudioTab(vm, settings, audio, level, onSource, display)
                 }
             }
         }
@@ -239,7 +241,8 @@ private fun BackgroundTab(vm: VjViewModel, state: LsdState, catalog: LsdCatalog?
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun AudioTab(vm: VjViewModel, s: VisualsSettings, audio: AudioStatus, level: Float, onSource: (AudioSource) -> Unit) {
+private fun AudioTab(vm: VjViewModel, s: VisualsSettings, audio: AudioStatus, level: Float, onSource: (AudioSource) -> Unit, display: OutputDisplay?) {
+    val output by vm.output.collectAsState()
     Column(Modifier.verticalScroll(rememberScrollState())) {
         Label("Listen to")
         FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
@@ -265,6 +268,10 @@ private fun AudioTab(vm: VjViewModel, s: VisualsSettings, audio: AudioStatus, le
         FlowRow(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
             ReducedMotion.entries.forEach { r -> FilterChip(s.reducedMotion == r, { vm.update(s.copy(reducedMotion = r)) }, { Text(r.name.lowercase()) }) }
         }
+        SwitchRow(
+            "Picture on the external display" + (display?.let { ": ${it.name}, ${it.width}x${it.height} at ${it.refreshHz.toInt()} Hz" } ?: " (none connected)"),
+            output,
+        ) { vm.setOutput(it) }
         SwitchRow("Follow live broadcasts from Liquid LSD desktop", s.live) { vm.update(s.copy(live = it)) }
         SwitchRow("Download new scenes in the background", s.contentUpdates) { vm.update(s.copy(contentUpdates = it)) }
         Spacer(Modifier.height(12.dp))

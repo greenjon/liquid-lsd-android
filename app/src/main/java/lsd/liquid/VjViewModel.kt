@@ -36,7 +36,16 @@ class VjViewModel(app: Application) : AndroidViewModel(app) {
     private val _failed = MutableStateFlow(false)
     val failed: StateFlow<Boolean> = _failed.asStateFlow()
 
+    private val _output = MutableStateFlow(prefs.getBoolean("output", true))
+    /** Send the picture to a second display when one is connected. */
+    val output: StateFlow<Boolean> = _output.asStateFlow()
+
+    fun setOutput(on: Boolean) { _output.value = on; prefs.edit().putBoolean("output", on).apply() }
+
     private var restored = false
+
+    /** A page came up (start, renderer restart, or the picture moved display): its controls start at the defaults. */
+    fun onPageReady() { restored = false }
 
     init {
         ContentUpdates.schedule(app, _settings.value.contentUpdates)

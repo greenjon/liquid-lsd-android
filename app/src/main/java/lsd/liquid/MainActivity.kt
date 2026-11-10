@@ -12,6 +12,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -22,6 +24,7 @@ import lsd.liquid.ui.VjScreen
 class MainActivity : ComponentActivity() {
     private val vm: VjViewModel by viewModels()
     private var pendingSource: AudioSource? = null
+    private lateinit var output: ExternalOutput
 
     private val askAudio = registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
         val source = pendingSource
@@ -47,7 +50,16 @@ class MainActivity : ComponentActivity() {
             systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        setContent { VjScreen(vm, onSource = ::chooseSource) }
+        output = ExternalOutput(this, vm)
+        output.start()
+        lifecycleScope.launch { vm.settings.collect { output.applySettings(it) } }
+        lifecycleScope.launch { vm.output.collect { output.update() } }
+        setContent { VjScreen(vm, output, onSource = ::chooseSource) }
+    }
+
+    override fun onDestroy() {
+        output.stop()
+        super.onDestroy()
     }
 
     /** Switches the audio input, asking for whatever permission it needs first. */
