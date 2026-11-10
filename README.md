@@ -37,6 +37,13 @@ Without hardware: `adb shell settings put global overlay_display_devices 1920x10
 `./gradlew assembleDebug`, tests `./gradlew testDebugUnitTest`. The plan this app follows is in liquid-lsd's
 `.planning/vj-app-plan.md`.
 
+## Releases
+
+`scripts/release.sh 0.1.1 [notes.md]` bumps the version, runs the tests, builds the APK signed with the local
+release key (`key.properties`, gitignored; the keystore lives outside the repo), checks the signature, tags,
+pushes and creates the GitHub release. CI (`.github/workflows/ci.yml`) tests and builds every push; the tag's
+`release.yml` re-checks the build and would publish by itself only if signing secrets were configured.
+
 ## Licence
 
 GPL-3.0 (see `LICENSE`), like Liquid LSD.
