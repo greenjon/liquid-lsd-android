@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "name": "web-drop-weapon",
+  "tags": [
+    "web",
+    "blur",
+    "glitch",
+    "bass-gated",
+    "kick",
+    "beat"
+  ],
+  "dryWet": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  },
+  "slots": [
+    {
+      "filterId": "radial_blur",
+      "enabled": true,
+      "dryWet": {
+        "baseValue": 1.0,
+        "baseMin": 0.0,
+        "baseMax": 1.0,
+        "randomizeBase": false,
+        "modulators": []
+      },
+      "parameters": {
+        "blurAmount": {
+          "baseValue": 0.0,
+          "baseMin": 0.0,
+          "baseMax": 1.0,
+          "randomizeBase": false,
+          "modulators": [
+            {
+              "sourceId": "audio_bass",
+              "operator": "ADD",
+              "depth": 1.0,
+              "dcOffset": -0.6,
+              "followerMode": "CUSTOM",
+              "attackMs": 5.0,
+              "decayMs": 200.0
+            }
+          ]
+        },
+        "decay": {
+          "baseValue": 0.84,
+          "baseMin": 0.69,
+          "baseMax": 0.99,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "exposure": {
+          "baseValue": 0.46,
+          "baseMin": 0.31,
+          "baseMax": 0.46,
+          "randomizeBase": true,
+          "modulators": []
+        }
+      }
+    },
+    {
+      "filterId": "rgb_split",
+      "enabled": true,
+      "dryWet": {
+        "baseValue": 1.0,
+        "baseMin": 0.0,
+        "baseMax": 1.0,
+        "randomizeBase": false,
+        "modulators": []
+      },
+      "parameters": {
+        "amount": {
+          "baseValue": 0.0,
+          "baseMin": 0.0,
+          "baseMax": 1.0,
+          "randomizeBase": false,
+          "modulators": [
+            {
+              "sourceId": "audio_flux_bass",
+              "operator": "ADD",
+              "depth": 0.6,
+              "dcOffset": 0.0,
+              "followerMode": "CUSTOM",
+              "attackMs": 4.0,
+              "decayMs": 200.0
+            }
+          ]
+        },
+        "angle": {
+          "baseValue": 0.0,
+          "baseMin": -0.9425,
+          "baseMax": 0.9425,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "radialMode": {
+          "baseValue": 1.0,
+          "baseMin": 0.0,
+          "baseMax": 1.0,
+          "randomizeBase": false,
+          "modulators": []
+        },
+        "dispersionMode": {
+          "baseValue": 0.0,
+          "baseMin": 0.0,
+          "baseMax": 1.0,
+          "randomizeBase": false,
+          "modulators": []
+        }
+      }
+    },
+    {
+      "filterId": "pinch_bulge",
+      "enabled": true,
+      "dryWet": {
+        "baseValue": 1.0,
+        "baseMin": 0.0,
+        "baseMax": 1.0,
+        "randomizeBase": false,
+        "modulators": []
+      },
+      "parameters": {
+        "amount": {
+          "baseValue": 0.0,
+          "baseMin": -0.3,
+          "baseMax": 0.3,
+          "randomizeBase": true,
+          "modulators": [
+            {
+              "sourceId": "lfo",
+              "operator": "ADD",
+              "depth": 0.3,
+              "dcOffset": 0.0,
+              "waveform": "TRIANGLE",
+              "genUnit": "BEAT",
+              "subdivision": 1.0,
+              "slope": 0.0,
+              "phaseOffset": 0.0
+            }
+          ]
+        },
+        "radius": {
+          "baseValue": 0.4,
+          "baseMin": 0.25,
+          "baseMax": 0.55,
+          "randomizeBase": true,
+          "modulators": []
+        }
+      }
+    }
+  ]
+}

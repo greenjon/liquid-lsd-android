@@ -1,0 +1,139 @@
+{
+  "version": 1,
+  "name": "web-ca-groove",
+  "visualSourceType": "cyclic_ca",
+  "parameters": {
+    "States": {
+      "baseValue": 0.1,
+      "baseMin": 0.05,
+      "baseMax": 0.15,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Threshold": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Neighborhood": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 2.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "Speed": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Density": {
+      "baseValue": 1.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "Reseed": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "PaletteMode": {
+      "baseValue": 1.0,
+      "baseMin": 0.0,
+      "baseMax": 3.0,
+      "randomizeBase": false,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.17,
+          "dcOffset": 0.17,
+          "waveform": "SQUARE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "HueOffset": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 48.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Saturation": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 40.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "Brightness": {
+      "baseValue": 0.45,
+      "baseMin": 0.3,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.1,
+          "dcOffset": 0.1,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 1.0,
+          "slope": 0.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    }
+  },
+  "tags": [
+    "web",
+    "groove",
+    "beat",
+    "bar",
+    "mid",
+    "fullframe"
+  ],
+  "presetNotes": "Spirals of colour that pulse on the beat and saturate with the mids; the palette changes every eight bars.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

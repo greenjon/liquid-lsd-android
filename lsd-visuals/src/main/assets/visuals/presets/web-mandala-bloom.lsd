@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "name": "web-mandala-bloom",
+  "visualSourceType": "mandala",
+  "parameters": {
+    "Lobes": {
+      "baseValue": 4,
+      "baseMin": 3,
+      "baseMax": 26,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Recipe Select": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "L1": {
+      "baseValue": 0.45,
+      "baseMin": 0.3,
+      "baseMax": 0.6,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "L2": {
+      "baseValue": 0.25,
+      "baseMin": 0.125,
+      "baseMax": 0.375,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.1,
+          "dcOffset": 0.1,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 1.0,
+          "slope": 0.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "L3": {
+      "baseValue": 0.2,
+      "baseMin": 0.1,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.1,
+          "dcOffset": 0.1,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 5.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "L4": {
+      "baseValue": 0.1,
+      "baseMin": 0.05,
+      "baseMax": 0.15,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Thickness": {
+      "baseValue": 0.35,
+      "baseMin": 0.35,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_flux_high",
+          "operator": "ADD",
+          "depth": 0.6,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 3.0,
+          "decayMs": 120.0
+        }
+      ]
+    },
+    "Hue Offset": {
+      "baseValue": 0.15,
+      "baseMin": 0.0,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 16.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Hue Sweep": {
+      "baseValue": 0.7,
+      "baseMin": 0.4,
+      "baseMax": 1.0,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Depth": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.15,
+          "dcOffset": 0.15,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 2.0,
+          "slope": 0.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    }
+  },
+  "tags": [
+    "web",
+    "beat",
+    "bar",
+    "high"
+  ],
+  "presetNotes": "A random mandala whose arm pulses on the beat and whose line thickens on every hi-hat.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

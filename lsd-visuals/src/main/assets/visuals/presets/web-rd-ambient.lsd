@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "name": "web-rd-ambient",
+  "visualSourceType": "reaction_diffusion",
+  "parameters": {
+    "Relief": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_amp",
+          "operator": "ADD",
+          "depth": 0.2,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 200.0,
+          "decayMs": 1500.0
+        }
+      ]
+    },
+    "Feed": {
+      "baseValue": 0.0,
+      "baseMin": -0.3,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.2,
+          "dcOffset": 0.0,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 96.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "HueOffset": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 96.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Saturation": {
+      "baseValue": 0.6,
+      "baseMin": 0.45,
+      "baseMax": 0.75,
+      "randomizeBase": true,
+      "modulators": []
+    }
+  },
+  "tags": [
+    "web",
+    "ambient",
+    "bar",
+    "amp"
+  ],
+  "presetNotes": "Slowly growing coral patterns.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

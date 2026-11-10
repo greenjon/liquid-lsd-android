@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "name": "web-hard-mandala",
+  "visualSourceType": "mandala",
+  "parameters": {
+    "Lobes": {
+      "baseValue": 4,
+      "baseMin": 3,
+      "baseMax": 26,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Recipe Select": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "L1": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "L2": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_flux_bass",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 4.0,
+          "decayMs": 150.0
+        }
+      ]
+    },
+    "L3": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_flux_high",
+          "operator": "ADD",
+          "depth": 0.3,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 3.0,
+          "decayMs": 120.0
+        }
+      ]
+    },
+    "L4": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": [
+        {
+          "sourceId": "audio_bass",
+          "operator": "ADD",
+          "depth": 1.0,
+          "dcOffset": -0.5,
+          "followerMode": "CUSTOM",
+          "attackMs": 5.0,
+          "decayMs": 120.0
+        }
+      ]
+    },
+    "Thickness": {
+      "baseValue": 0.35,
+      "baseMin": 0.35,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_flux_bass",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 4.0,
+          "decayMs": 150.0
+        }
+      ]
+    },
+    "Hue Offset": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 8.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Hue Sweep": {
+      "baseValue": 1.0,
+      "baseMin": 0.7,
+      "baseMax": 1.0,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Depth": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.15,
+          "dcOffset": 0.15,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 0.5,
+          "slope": 0.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    }
+  },
+  "tags": [
+    "web",
+    "hard",
+    "beat",
+    "bass",
+    "kick",
+    "high",
+    "bass-gated"
+  ],
+  "presetNotes": "A random mandala: lines punch on kicks, arms flicker on hats and a fourth arm slams in on bass.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

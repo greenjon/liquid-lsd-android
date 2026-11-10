@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "name": "web-hyper-ambient",
+  "visualSourceType": "hyper_slice",
+  "parameters": {
+    "SliceOffset": {
+      "baseValue": 0.0,
+      "baseMin": -0.3,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 64.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "RotateXW": {
+      "baseValue": 0.0,
+      "baseMin": -0.9425,
+      "baseMax": 0.9425,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.0,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 48.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "RotateYW": {
+      "baseValue": 0.2,
+      "baseMin": 0.1,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 64.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "RotateZW": {
+      "baseValue": 0.0,
+      "baseMin": -0.9425,
+      "baseMax": 0.9425,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Morph": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_amp",
+          "operator": "ADD",
+          "depth": 0.15,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 200.0,
+          "decayMs": 1500.0
+        }
+      ]
+    },
+    "SupportH": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "ColorMethod": {
+      "baseValue": 2.0,
+      "baseMin": 0.0,
+      "baseMax": 2.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "HueOffset": {
+      "baseValue": 0.4,
+      "baseMin": 0.1,
+      "baseMax": 0.7,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 96.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Saturation": {
+      "baseValue": 0.7,
+      "baseMin": 0.55,
+      "baseMax": 0.85,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Brightness": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.4,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Opacity": {
+      "baseValue": 0.55,
+      "baseMin": 0.4,
+      "baseMax": 0.7,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "EdgeThickness": {
+      "baseValue": 0.1,
+      "baseMin": 0.05,
+      "baseMax": 0.15,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "EdgeBrightness": {
+      "baseValue": 0.25,
+      "baseMin": 0.125,
+      "baseMax": 0.25,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Glow": {
+      "baseValue": 0.08,
+      "baseMin": 0.04,
+      "baseMax": 0.08,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Zoom": {
+      "baseValue": 0.5,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    }
+  },
+  "tags": [
+    "web",
+    "ambient",
+    "bar",
+    "amp"
+  ],
+  "presetNotes": "A 4D shape sliced slowly over 16 bars in muted colour; only loudness nudges its morph.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

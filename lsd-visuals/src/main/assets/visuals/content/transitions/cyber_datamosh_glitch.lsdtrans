@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "name": "cyber_datamosh_glitch",
+  "tags": ["glitch", "datamosh", "digital", "cyber"],
+  "slot": {
+    "filterId": "cyber_datamosh",
+    "enabled": true,
+    "dryWet": {
+      "baseValue": 1.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "parameters": {
+      "blockiness": {
+        "baseValue": 0.42857,
+        "baseMin": 0.15,
+        "baseMax": 0.7,
+        "randomizeBase": true,
+        "modulators": [
+          {
+            "sourceId": "lfo",
+            "operator": "ADD",
+            "waveform": "SQUARE",
+            "genUnit": "BEAT",
+            "subdivision": 2,
+            "depth": 0.2,
+            "bypassed": true
+          }
+        ]
+      },
+      "rgbSplit": {
+        "baseValue": 0.4,
+        "baseMin": 0.1,
+        "baseMax": 0.5,
+        "randomizeBase": true,
+        "modulators": [
+          {
+            "sourceId": "audio_flux_bass",
+            "operator": "ADD",
+            "depth": 0.4,
+            "followerMode": "SNAP",
+            "attackMs": 0,
+            "decayMs": 80
+          }
+        ]
+      },
+      "packetLoss": {
+        "baseValue": 0.6,
+        "baseMin": 0.25,
+        "baseMax": 0.65,
+        "randomizeBase": true,
+        "modulators": [
+          {
+            "sourceId": "audio_flux_high",
+            "operator": "ADD",
+            "depth": 0.3,
+            "followerMode": "SNAP",
+            "attackMs": 0,
+            "decayMs": 60
+          }
+        ]
+      }
+    }
+  }
+}

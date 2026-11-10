@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "name": "web-aurora-pulse",
+  "visualSourceType": "aurora_ribbons",
+  "parameters": {
+    "Ribbons": {
+      "baseValue": 4,
+      "baseMin": 3.0,
+      "baseMax": 6.0,
+      "randomizeBase": false,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.17,
+          "dcOffset": 0.17,
+          "waveform": "SQUARE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "CurtainHeight": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_bass",
+          "operator": "ADD",
+          "depth": 0.3,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 20.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "WaveAmp": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.15,
+          "dcOffset": 0.15,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 8.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "WaveSpeed": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Shimmer": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_flux_high",
+          "operator": "ADD",
+          "depth": 0.6,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 3.0,
+          "decayMs": 120.0
+        }
+      ]
+    },
+    "SkyDarkness": {
+      "baseValue": 0.6,
+      "baseMin": 0.45,
+      "baseMax": 0.75,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "PaletteMode": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 3.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "SurfaceType": {
+      "baseValue": 1.0,
+      "baseMin": 0.0,
+      "baseMax": 2.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "HueShift": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 64.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Saturation": {
+      "baseValue": 0.7,
+      "baseMin": 0.55,
+      "baseMax": 0.85,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Brightness": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.1,
+          "dcOffset": 0.1,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 1.0,
+          "slope": 0.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    }
+  },
+  "tags": [
+    "web",
+    "groove",
+    "beat",
+    "bar",
+    "bass",
+    "high"
+  ],
+  "presetNotes": "Curtains that rise with the bass and brighten on every beat; hats make them shimmer; a ribbon joins every eight bars.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

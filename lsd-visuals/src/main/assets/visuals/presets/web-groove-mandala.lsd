@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "name": "web-groove-mandala",
+  "visualSourceType": "mandala",
+  "parameters": {
+    "Lobes": {
+      "baseValue": 4,
+      "baseMin": 3,
+      "baseMax": 26,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Recipe Select": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "L1": {
+      "baseValue": 0.45,
+      "baseMin": 0.3,
+      "baseMax": 0.6,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "L2": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.125,
+          "dcOffset": 0.125,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 4.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "L3": {
+      "baseValue": 0.25,
+      "baseMin": 0.125,
+      "baseMax": 0.375,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.3,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 40.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "L4": {
+      "baseValue": 0.1,
+      "baseMin": 0.05,
+      "baseMax": 0.15,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.075,
+          "dcOffset": 0.075,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 2.0,
+          "slope": 0.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Thickness": {
+      "baseValue": 0.4,
+      "baseMin": 0.4,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_bass",
+          "operator": "ADD",
+          "depth": 0.3,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 20.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "Hue Offset": {
+      "baseValue": 0.3,
+      "baseMin": 0.0,
+      "baseMax": 0.6,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Hue Sweep": {
+      "baseValue": 0.5,
+      "baseMin": 0.2,
+      "baseMax": 0.8,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Depth": {
+      "baseValue": 0.45,
+      "baseMin": 0.3,
+      "baseMax": 0.6,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.1,
+          "dcOffset": 0.1,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 1.0,
+          "slope": 0.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    }
+  },
+  "tags": [
+    "web",
+    "groove",
+    "beat",
+    "bar",
+    "bass",
+    "mid"
+  ],
+  "presetNotes": "A random mandala whose arms sway every four beats, thicken with the bass and pulse softly on each beat.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

@@ -1,0 +1,202 @@
+{
+  "version": 1,
+  "name": "web-icosa-glass",
+  "visualSourceType": "icosa_h3",
+  "parameters": {
+    "Morph": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 40.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "StellationBoost": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "SpikeMode": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "SpikeSharpness": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "BlockerSize": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "ColorMode": {
+      "baseValue": 4.0,
+      "baseMin": 0.0,
+      "baseMax": 4.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "HueOffset": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Saturation": {
+      "baseValue": 0.8,
+      "baseMin": 0.65,
+      "baseMax": 0.95,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Brightness": {
+      "baseValue": 0.6,
+      "baseMin": 0.45,
+      "baseMax": 0.6,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Opacity": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "EdgeThickness": {
+      "baseValue": 0.2,
+      "baseMin": 0.1,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "EdgeBrightness": {
+      "baseValue": 0.6,
+      "baseMin": 0.45,
+      "baseMax": 0.6,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.1,
+          "dcOffset": 0.1,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 1.0,
+          "slope": 0.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "RimGlow": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.3,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 40.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "Zoom": {
+      "baseValue": 0.7,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "RotateX": {
+      "baseValue": 0.0,
+      "baseMin": -0.9425,
+      "baseMax": 0.9425,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 1.0,
+          "dcOffset": 0.0,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 24.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "RotateY": {
+      "baseValue": 0.0,
+      "baseMin": -0.9425,
+      "baseMax": 0.9425,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 1.0,
+          "dcOffset": 0.0,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    }
+  },
+  "tags": [
+    "web",
+    "groove",
+    "beat",
+    "bar",
+    "mid"
+  ],
+  "presetNotes": "A see-through crystal with thick bright edges that tick on the beat; the mids morph it and light its rim.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

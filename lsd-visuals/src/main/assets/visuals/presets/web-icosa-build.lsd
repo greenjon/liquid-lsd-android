@@ -1,0 +1,216 @@
+{
+  "version": 1,
+  "name": "web-icosa-build",
+  "visualSourceType": "icosa_h3",
+  "parameters": {
+    "Morph": {
+      "baseValue": 0.1,
+      "baseMin": 0.05,
+      "baseMax": 0.15,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.35,
+          "dcOffset": 0.35,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 1.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "StellationBoost": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": [
+        {
+          "sourceId": "audio_bass",
+          "operator": "ADD",
+          "depth": 1.5,
+          "dcOffset": -0.8999999999999999,
+          "followerMode": "CUSTOM",
+          "attackMs": 15.0,
+          "decayMs": 250.0
+        }
+      ]
+    },
+    "SpikeMode": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "SpikeSharpness": {
+      "baseValue": 0.6,
+      "baseMin": 0.45,
+      "baseMax": 0.75,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "BlockerSize": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "ColorMode": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 4.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "HueOffset": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.3,
+          "dcOffset": 0.3,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 1.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Saturation": {
+      "baseValue": 0.85,
+      "baseMin": 0.7,
+      "baseMax": 1.0,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Brightness": {
+      "baseValue": 0.65,
+      "baseMin": 0.5,
+      "baseMax": 0.65,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Opacity": {
+      "baseValue": 0.75,
+      "baseMin": 0.6,
+      "baseMax": 0.9,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "EdgeThickness": {
+      "baseValue": 0.12,
+      "baseMin": 0.06,
+      "baseMax": 0.18,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "EdgeBrightness": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.4,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.2,
+          "dcOffset": 0.2,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 1.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "RimGlow": {
+      "baseValue": 0.2,
+      "baseMin": 0.1,
+      "baseMax": 0.2,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.25,
+          "dcOffset": 0.25,
+          "waveform": "TRIANGLE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 1.0,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Zoom": {
+      "baseValue": 0.65,
+      "baseMin": 0.0,
+      "baseMax": 1.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "RotateX": {
+      "baseValue": 0.0,
+      "baseMin": -0.9425,
+      "baseMax": 0.9425,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 1.0,
+          "dcOffset": 0.0,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "RotateY": {
+      "baseValue": 0.0,
+      "baseMin": -0.9425,
+      "baseMax": 0.9425,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 1.0,
+          "dcOffset": 0.0,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 24.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    }
+  },
+  "tags": [
+    "web",
+    "build",
+    "bar",
+    "bass",
+    "bass-gated"
+  ],
+  "presetNotes": "A crystal that morphs, brightens and shifts colour over an eight-bar phrase; bass hits throw spikes out of it.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

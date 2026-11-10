@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "name": "web-film-mid",
+  "visualSourceType": "thin_film",
+  "parameters": {
+    "FlowSpeed": {
+      "baseValue": 0.25,
+      "baseMin": 0.125,
+      "baseMax": 0.375,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Scale": {
+      "baseValue": 0.35,
+      "baseMin": 0.2,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "FilmThickness": {
+      "baseValue": 0.35,
+      "baseMin": 0.2,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "ThicknessRange": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 40.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "Contrast": {
+      "baseValue": 0.45,
+      "baseMin": 0.3,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Turbulence": {
+      "baseValue": 0.3,
+      "baseMin": 0.15,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 40.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "Sheen": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.3,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 40.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "HueShift": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.3,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 80.0,
+          "decayMs": 800.0
+        }
+      ]
+    },
+    "Saturation": {
+      "baseValue": 0.75,
+      "baseMin": 0.6,
+      "baseMax": 0.9,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Brightness": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": []
+    }
+  },
+  "tags": [
+    "web",
+    "mid",
+    "fullframe"
+  ],
+  "presetNotes": "Iridescence that churns and changes colour with the mids (vocals, synths) and calms when they stop.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

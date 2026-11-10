@@ -1,0 +1,111 @@
+{
+  "version": 1,
+  "name": "web-halftone-beat",
+  "tags": [
+    "web",
+    "halftone",
+    "beat",
+    "bar",
+    "mid"
+  ],
+  "dryWet": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  },
+  "slots": [
+    {
+      "filterId": "halftone",
+      "enabled": true,
+      "dryWet": {
+        "baseValue": 1.0,
+        "baseMin": 0.0,
+        "baseMax": 1.0,
+        "randomizeBase": false,
+        "modulators": []
+      },
+      "parameters": {
+        "dotScale": {
+          "baseValue": 0.25,
+          "baseMin": 0.125,
+          "baseMax": 0.375,
+          "randomizeBase": true,
+          "modulators": [
+            {
+              "sourceId": "lfo",
+              "operator": "ADD",
+              "depth": 0.1,
+              "dcOffset": 0.1,
+              "waveform": "TRIANGLE",
+              "genUnit": "BEAT",
+              "subdivision": 1.0,
+              "slope": 0.0,
+              "phaseOffset": 0.0
+            }
+          ]
+        },
+        "screenAngle": {
+          "baseValue": 0.0,
+          "baseMin": -0.9425,
+          "baseMax": 0.9425,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "mode": {
+          "baseValue": 0.0,
+          "baseMin": 0.0,
+          "baseMax": 2.0,
+          "randomizeBase": false,
+          "modulators": [
+            {
+              "sourceId": "lfo",
+              "operator": "ADD",
+              "depth": 0.25,
+              "dcOffset": 0.25,
+              "waveform": "SQUARE",
+              "genUnit": "BEAT",
+              "subdivision": 16.0,
+              "slope": 0.5,
+              "phaseOffset": 0.0
+            }
+          ]
+        },
+        "smoothness": {
+          "baseValue": 0.2,
+          "baseMin": 0.1,
+          "baseMax": 0.3,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "paperTint": {
+          "baseValue": 0.1,
+          "baseMin": 0.05,
+          "baseMax": 0.15,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "mixRatio": {
+          "baseValue": 0.8,
+          "baseMin": 0.65,
+          "baseMax": 0.95,
+          "randomizeBase": true,
+          "modulators": [
+            {
+              "sourceId": "audio_mid",
+              "operator": "ADD",
+              "depth": 0.2,
+              "dcOffset": 0.0,
+              "followerMode": "CUSTOM",
+              "attackMs": 40.0,
+              "decayMs": 300.0
+            }
+          ]
+        }
+      }
+    },
+    null,
+    null
+  ]
+}

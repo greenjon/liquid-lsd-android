@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "name": "web-tunnel-wormhole",
+  "visualSourceType": "tunnel_scenes",
+  "parameters": {
+    "SurfaceType": {
+      "baseValue": 2.0,
+      "baseMin": 0.0,
+      "baseMax": 2.0,
+      "randomizeBase": false,
+      "modulators": []
+    },
+    "Symmetries": {
+      "baseValue": 6,
+      "baseMin": 3.0,
+      "baseMax": 12.0,
+      "randomizeBase": false,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.06,
+          "dcOffset": 0.06,
+          "waveform": "SQUARE",
+          "genUnit": "BEAT",
+          "subdivision": 16.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Speed": {
+      "baseValue": 0.35,
+      "baseMin": 0.175,
+      "baseMax": 0.525,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Twist": {
+      "baseValue": 0.2,
+      "baseMin": 0.1,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 32.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Glow": {
+      "baseValue": 0.45,
+      "baseMin": 0.3,
+      "baseMax": 0.45,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_mid",
+          "operator": "ADD",
+          "depth": 0.4,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 40.0,
+          "decayMs": 300.0
+        }
+      ]
+    },
+    "Fog": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "audio_amp",
+          "operator": "ADD",
+          "depth": 0.2,
+          "dcOffset": 0.0,
+          "followerMode": "CUSTOM",
+          "attackMs": 30.0,
+          "decayMs": 400.0
+        }
+      ]
+    },
+    "LineWidth": {
+      "baseValue": 0.35,
+      "baseMin": 0.2,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Sway": {
+      "baseValue": 0.4,
+      "baseMin": 0.25,
+      "baseMax": 0.55,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "HueOffset": {
+      "baseValue": 0.0,
+      "baseMin": 0.0,
+      "baseMax": 0.3,
+      "randomizeBase": true,
+      "modulators": [
+        {
+          "sourceId": "lfo",
+          "operator": "ADD",
+          "depth": 0.5,
+          "dcOffset": 0.5,
+          "waveform": "SINE",
+          "genUnit": "BEAT",
+          "subdivision": 48.0,
+          "slope": 0.5,
+          "phaseOffset": 0.0
+        }
+      ]
+    },
+    "Saturation": {
+      "baseValue": 0.85,
+      "baseMin": 0.7,
+      "baseMax": 1.0,
+      "randomizeBase": true,
+      "modulators": []
+    },
+    "Brightness": {
+      "baseValue": 0.5,
+      "baseMin": 0.35,
+      "baseMax": 0.5,
+      "randomizeBase": true,
+      "modulators": []
+    }
+  },
+  "tags": [
+    "web",
+    "groove",
+    "bar",
+    "mid",
+    "amp"
+  ],
+  "presetNotes": "A polygon wormhole that gains a side every four bars; mids light it up and loudness clears the fog.",
+  "globalAlpha": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  }
+}

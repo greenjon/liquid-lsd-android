@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "name": "web-warmth",
+  "tags": [
+    "web",
+    "grade",
+    "crt",
+    "bass",
+    "mid",
+    "kick"
+  ],
+  "dryWet": {
+    "baseValue": 1.0,
+    "baseMin": 0.0,
+    "baseMax": 1.0,
+    "randomizeBase": false,
+    "modulators": []
+  },
+  "slots": [
+    {
+      "filterId": "color_levels",
+      "enabled": true,
+      "dryWet": {
+        "baseValue": 1.0,
+        "baseMin": 0.0,
+        "baseMax": 1.0,
+        "randomizeBase": false,
+        "modulators": []
+      },
+      "parameters": {
+        "warmth": {
+          "baseValue": 0.15,
+          "baseMin": 0.075,
+          "baseMax": 0.225,
+          "randomizeBase": true,
+          "modulators": [
+            {
+              "sourceId": "audio_bass",
+              "operator": "ADD",
+              "depth": 0.2,
+              "dcOffset": 0.0,
+              "followerMode": "CUSTOM",
+              "attackMs": 20.0,
+              "decayMs": 300.0
+            }
+          ]
+        },
+        "contrast": {
+          "baseValue": 0.38,
+          "baseMin": 0.23,
+          "baseMax": 0.38,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "saturation": {
+          "baseValue": 0.35,
+          "baseMin": 0.2,
+          "baseMax": 0.5,
+          "randomizeBase": true,
+          "modulators": [
+            {
+              "sourceId": "audio_mid",
+              "operator": "ADD",
+              "depth": 0.2,
+              "dcOffset": 0.0,
+              "followerMode": "CUSTOM",
+              "attackMs": 40.0,
+              "decayMs": 300.0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "filterId": "retro_crt",
+      "enabled": true,
+      "dryWet": {
+        "baseValue": 0.35,
+        "baseMin": 0.0,
+        "baseMax": 1.0,
+        "randomizeBase": false,
+        "modulators": []
+      },
+      "parameters": {
+        "scanlineIntensity": {
+          "baseValue": 0.25,
+          "baseMin": 0.125,
+          "baseMax": 0.25,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "scanlineCount": {
+          "baseValue": 300.0,
+          "baseMin": 50.0,
+          "baseMax": 800.0,
+          "randomizeBase": false,
+          "modulators": []
+        },
+        "curvature": {
+          "baseValue": 0.08,
+          "baseMin": 0.04,
+          "baseMax": 0.12,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "phosphorMask": {
+          "baseValue": 0.2,
+          "baseMin": 0.1,
+          "baseMax": 0.3,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "vignette": {
+          "baseValue": 0.3,
+          "baseMin": 0.15,
+          "baseMax": 0.45,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "brightnessBoost": {
+          "baseValue": 0.3,
+          "baseMin": 0.15,
+          "baseMax": 0.3,
+          "randomizeBase": true,
+          "modulators": []
+        }
+      }
+    },
+    {
+      "filterId": "bloom",
+      "enabled": true,
+      "dryWet": {
+        "baseValue": 0.5,
+        "baseMin": 0.0,
+        "baseMax": 1.0,
+        "randomizeBase": false,
+        "modulators": []
+      },
+      "parameters": {
+        "bloomIntensity": {
+          "baseValue": 0.15,
+          "baseMin": 0.075,
+          "baseMax": 0.15,
+          "randomizeBase": true,
+          "modulators": [
+            {
+              "sourceId": "audio_flux_bass",
+              "operator": "ADD",
+              "depth": 0.3,
+              "dcOffset": 0.0,
+              "followerMode": "CUSTOM",
+              "attackMs": 4.0,
+              "decayMs": 220.0
+            }
+          ]
+        },
+        "threshold": {
+          "baseValue": 0.6,
+          "baseMin": 0.45,
+          "baseMax": 0.75,
+          "randomizeBase": true,
+          "modulators": []
+        },
+        "blurAmount": {
+          "baseValue": 0.3,
+          "baseMin": 0.15,
+          "baseMax": 0.45,
+          "randomizeBase": true,
+          "modulators": []
+        }
+      }
+    }
+  ]
+}
