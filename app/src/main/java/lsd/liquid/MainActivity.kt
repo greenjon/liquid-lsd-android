@@ -54,15 +54,44 @@ class MainActivity : ComponentActivity() {
         output.start()
         lifecycleScope.launch { vm.settings.collect { output.applySettings(it) } }
         lifecycleScope.launch { vm.output.collect { output.update() } }
+        // The second display going away while the app is off screen leaves nothing drawing: the microphone stops too.
+        lifecycleScope.launch { output.presenting.collect { if (!it && !onScreen) pauseIdleMicrophone() } }
         setContent { VjScreen(vm, output, onSource = { chooseSource(it) }) }
     }
 
     private var inputStarted = false
+    private var onScreen = false
+    /** True while the microphone is stopped because the app left the screen; it comes back with the app. */
+    private var micPaused = false
 
     override fun onStart() {
         super.onStart()
+        onScreen = true
         // Once per launch, after the activity is on screen (a microphone service may only start from the foreground).
         if (!inputStarted) { inputStarted = true; startRememberedInput() }
+        else if (micPaused) {
+            micPaused = false
+            val micAllowed = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED
+            if (micAllowed && AudioService.status.value.source == AudioSource.OFF) AudioService.startMicrophone(this)
+        }
+    }
+
+    override fun onStop() {
+        onScreen = false
+        pauseIdleMicrophone()
+        super.onStop()
+    }
+
+    /**
+     * Off screen with no second display, the picture is paused, so the microphone would only keep a foreground
+     * service (its notification, the system's "running in the background" notice, the mic indicator) for nothing.
+     * Phone audio keeps running: it needs the user's OK each time it starts, and the user has most likely switched
+     * to the app playing the music.
+     */
+    private fun pauseIdleMicrophone() {
+        if (output.presenting.value || AudioService.status.value.source != AudioSource.MICROPHONE) return
+        micPaused = true
+        AudioService.stop(this)
     }
 
     /** First launch: ask for the microphone and listen. Later: the last input, the microphone coming back by itself. */
@@ -93,6 +122,7 @@ class MainActivity : ComponentActivity() {
     private fun chooseSource(source: AudioSource) = chooseSource(source, remember = true)
 
     private fun chooseSource(source: AudioSource, remember: Boolean) {
+        micPaused = false
         if (remember) vm.input = source
         if (source == AudioSource.OFF) { AudioService.stop(this); return }
         // No notification permission prompt: the input's notification is a nicety (Android shows its own microphone

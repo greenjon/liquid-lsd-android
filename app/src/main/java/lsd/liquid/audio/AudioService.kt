@@ -36,6 +36,7 @@ data class AudioStatus(val source: AudioSource = AudioSource.OFF, val error: Str
 /**
  * Keeps the audio input running while the app is in the background or the screen is off (a foreground service:
  * Android stops a background microphone otherwise), and holds the system-audio MediaProjection. One input at a time.
+ * The activity stops the microphone while nothing draws (off screen, no second display) and starts it again on return.
  */
 class AudioService : Service() {
     private var capture: AudioCapture? = null
